@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title> </title>
-  <icon>https://www.gravatar.com/avatar/b000b6b8fcdf17327c4a742f21a0cc99</icon>
-  <subtitle>百念成诗</subtitle>
+  <icon>https://www.gravatar.com/avatar/d27fc003dae0fb486ea69222463f3d8e</icon>
+  <subtitle>天上人间</subtitle>
   <link href="https://xayah-rebel.github.io/atom.xml" rel="self"/>
   
   <link href="https://xayah-rebel.github.io/"/>
@@ -10,8 +10,8 @@
   <id>https://xayah-rebel.github.io/</id>
   
   <author>
-    <name>百念成诗</name>
-    <email>1624612103@qq.com</email>
+    <name>Mr.Liu</name>
+    <email>liuml@mail.ustc.edu.cn</email>
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
