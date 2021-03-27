@@ -105,7 +105,10 @@ $(function () {
             // 启用字幕
             subHtmlSelectorRelative: true
         });
-
+        // 查看大图，发现全部为 loading 加载图，原因是因为懒加载插件与 lightgallery 插件冲突，解决办法如下
+        $(document).find('img[data-original]').each(function(){
+            $(this).parent().attr("href", $(this).attr("data-original"));
+        });
         // progress bar init
         const progressElement = window.document.querySelector('.progress-bar');
         if (progressElement) {
