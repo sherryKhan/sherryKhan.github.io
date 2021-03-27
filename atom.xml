@@ -6,7 +6,7 @@
   <link href="https://xayah-rebel.github.io/atom.xml" rel="self"/>
   
   <link href="https://xayah-rebel.github.io/"/>
-  <updated>2021-03-27T13:48:47.489Z</updated>
+  <updated>2021-03-27T14:20:14.893Z</updated>
   <id>https://xayah-rebel.github.io/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>LAMP搭建</title>
-    <link href="https://xayah-rebel.github.io/2021/03/27/lamp/"/>
-    <id>https://xayah-rebel.github.io/2021/03/27/lamp/</id>
-    <published>2021-03-27T13:25:12.109Z</published>
-    <updated>2021-03-27T13:48:47.489Z</updated>
+    <link href="https://xayah-rebel.github.io/2021/03/28/lamp/"/>
+    <id>https://xayah-rebel.github.io/2021/03/28/lamp/</id>
+    <published>2021-03-27T16:48:52.799Z</published>
+    <updated>2021-03-27T14:20:14.893Z</updated>
     
     <content type="html"><![CDATA[<p>Linux环境安装教程</p><p>一、系统约定<br>操作系统采用CentOS 6.5，使用CentOS自身提供的Apache、PHP、MySQL搭建LAMP服务器。<br>Apache 2.2.15<br>php 5.3.3<br>mysql 5.1.73</p><p>二、系统环境部署及调整</p><ol><li><p>检查系统是否正常</p><p>more /var/log/messages（检查有无系统级错误信息） </p><p>dmesg（检查硬件设备是否有错误信息） </p><p>ifconfig（检查网卡设置是否正确） </p><p>ping <a href="http://www.163.com(检查网络是否正常)/">www.163.com（检查网络是否正常）</a> </p></li><li><p>关闭不需要的服务</p><p>ntsysv 以下仅列出需要启动的服务，未列出的服务一律推荐关闭：</p><p>atd crond haldaemon httpd iptables irqbalance mysqld network postfix rsyslog sshd</p></li><li><p>重新启动系统</p><p>init 6 </p></li><li><p>使用 yum 程序安装所需开发包（以下为标准的 RPM 包名称）</p><p>yum install gd gd-devel php-gd libxml2 libmcrypt cronolog ntp vim-enhanced gcc gcc-c++ gcc-g77 flex bison autoconf automake bzip2-devel ncurses-devel libjpeg-devel libpng-devel libtiff-devel freetype-devel pam-devel</p></li></ol><p>三、安装配置L.A.M.P环境</p><ol><li><p>检查LAMP所需软件：httpd mysql mysql-server php php-devel php-mysql，如果没有则使用yum安装。</p><p>yum install httpd mysql mysql-server php php-mysql</p></li><li><p>配置Apache</p><p>vim /etc/httpd/conf/httpd.conf</p><p>​    KeepAlive On                     &lt;==将默认的Off改为On    76行左右<br>​    MaxKeepAliveRequests 500         &lt;==将默认的100改为500以上    83行左右<br>​    Listen 80                        &lt;==监听端口80，可自己修改  136行左右<br>​    DocumentRoot “/var/www/html”     &lt;==默认根目录   292行左右<br>​    Alias /icons/ “/var/www/icons/“  &lt;==虚拟目录     551行左右</p><p>​    DirectoryIndex index.html index.html.var index.htm index.php &lt;==默认首页  402行左右</p><p>找到 AddDefaultCharset UTF-8     &lt;==将其注释掉    747行左右</p><p>找到： AddType application/x-gzip .gz .tgz<br>在该行下面添加 AddType application/x-httpd-php .php      781行左右</p><p>找到<br>&lt;Directory “/var/www/html”&gt;<br>Options Indexes FollowSymLinks    &lt;==将Indexs删除掉  331行左右</p></li><li><p>配置PHP</p><p>vim /etc/httpd/conf.d/php.conf</p><p>vim /etc/php.ini</p><p>​    post_max_size = 8M         &lt;==修改上传容量限制    729行左右<br>​    file_uploads = On          &lt;==允许上传            869行左右<br>​    upload_max_filesize = 2M   &lt;==修改上传容量限制    878行左右<br>​    memory_limit = 128M        &lt;==修改php内存限制     457行左右</p></li><li><p>测试apache和php</p><p>/etc/init.d/httpd start            &lt;==立即启动</p><p>/etc/init.d/httpd configtest       &lt;==测试配置文件语法</p><p>chkconfig httpd on                 &lt;==开机启动www</p><p>另一种启动方式</p><p>/usr/sbin/apachectl start</p><p>/usr/sbin/apachectl stop</p><p>查看是否启动</p><p>netstat -tulnp | grep ‘httpd’</p><p>测试php<br>在/var/www/html目录下建立一个phpinfo.php文件</p><p>vim /var/www/html/phpinfo.php</p><p>​    <!--?php phpinfo(); ?--></p></li><li><p>配置MySQL</p><p>启动服务</p><p>​    /etc/init.d/mysqld start</p><p>​    chkconfig mysqld on</p><p>测试服务</p><p>​    netstat -tulnp | grep ‘mysql’</p><p>​    mysql -u root</p><p>设置密码</p><p>​    mysqladmin -u root password ‘yourpassword’</p><p>​    mysql -u root -p    </p><p>​    Enter password:</p><p>调优</p><p>​    vim /etc/my.cnf</p><p>​    MySQL数据目录<br>​    datadir=/var/lib/mysql</p></li><li><p>配置防火墙</p><p>/sbin/iptables -I INPUT -p tcp –dport 80 -j ACCEPT    &lt;==开放80端口</p><p>/etc/rc.d/init.d/iptables save                         &lt;==保存防火墙配置</p><p>/etc/init.d/iptables status     &lt;==查看防火墙服务状态</p><p>/etc/init.d/iptables restart     &lt;==重启防火墙服务</p><p>/etc/init.d/iptables stop              &lt;==本次关闭防火墙服务</p><p>chkconfig –level 35 iptables off     &lt;==永久性关闭防火墙服务</p><p>vim /etc/sysconfig/iptables     &lt;==设置或查看防火墙配置文件</p></li></ol><p>=========================================================================<br>linux，apache，php，mysql常用的查看版本信息的方法</p><hr><p>1、查看linux版本<br>[root@gzc /]# lsb_release -a<br>LSB Version:    :base-4.0-amd64:base-4.0-noarch:core-4.0-amd64:core-4.0-noarch:graphics-4.0-amd64:graphics-4.0-noarch:printing-4.0-amd64:printing-4.0-noarch<br>Distributor ID:    CentOS<br>Description:    CentOS release 6.5 (Final)<br>Release:    6.5<br>Codename:    Final</p><p>2、查看apache版本<br>[root@gzc /]# httpd -v<br>Server version: Apache/2.2.15 (Unix)</p><p>[root@gzc /]# rpm -qa |grep httpd<br>httpd-2.2.15-31.el6.centos.x86_64<br>httpd-tools-2.2.15-31.el6.centos.x86_64</p><p>3、查看php版本<br>[root@gzc /]# php -v<br>PHP 5.3.3 (cli) (built: Aug  6 2014 05:54:27)<br>Copyright (c) 1997-2010 The PHP Group<br>Zend Engine v2.3.0, Copyright (c) 1998-2010 Zend Technologies</p><p>[root@gzc /]# rpm -qa | grep php<br>php-5.3.3-27.el6_5.1.x86_64<br>php-common-5.3.3-27.el6_5.1.x86_64<br>php-cli-5.3.3-27.el6_5.1.x86_64<br>php-devel-5.3.3-27.el6_5.1.x86_64<br>php-gd-5.3.3-27.el6_5.1.x86_64<br>php-pdo-5.3.3-27.el6_5.1.x86_64<br>php-mysql-5.3.3-27.el6_5.1.x86_64</p><p>4、查看mysql版本<br>[root@gzc /]# mysql -V<br>mysql  Ver 14.14 Distrib 5.1.73, for redhat-linux-gnu (x86_64) using readline 5.1</p><p>[root@gzc /]# rpm -qa |grep mysql<br>mysql-libs-5.1.73-3.el6_5.x86_64<br>mysql-server-5.1.73-3.el6_5.x86_64<br>mysql-5.1.73-3.el6_5.x86_64<br>php-mysql-5.3.3-27.el6_5.1.x86_64</p><p>=========================================================================</p>]]></content>
     
@@ -35,30 +35,10 @@
     
     
     
-    <category term="linux" scheme="https://xayah-rebel.github.io/categories/linux/"/>
+    <category term="服务器学习" scheme="https://xayah-rebel.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
     <category term="Linux" scheme="https://xayah-rebel.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://xayah-rebel.github.io/2021/03/27/hello-world/"/>
-    <id>https://xayah-rebel.github.io/2021/03/27/hello-world/</id>
-    <published>2021-03-26T16:24:56.045Z</published>
-    <updated>2021-03-26T15:12:02.851Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new "My New Post"</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
-      
-    
-    
-    
     
   </entry>
   
