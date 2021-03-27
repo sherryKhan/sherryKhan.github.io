@@ -6,7 +6,7 @@
   <link href="https://xayah-rebel.github.io/atom.xml" rel="self"/>
   
   <link href="https://xayah-rebel.github.io/"/>
-  <updated>2021-03-26T15:12:02.851Z</updated>
+  <updated>2020-11-18T11:56:17.550Z</updated>
   <id>https://xayah-rebel.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>每天一个智力题</title>
+    <link href="https://xayah-rebel.github.io/2021/03/27/zhi-li-ti/"/>
+    <id>https://xayah-rebel.github.io/2021/03/27/zhi-li-ti/</id>
+    <published>2021-03-27T13:25:12.109Z</published>
+    <updated>2020-11-18T11:56:17.550Z</updated>
+    
+    <content type="html"><![CDATA[<p>计算机应用数学—–每周智力题</p><span id="more"></span><p>##老鼠喝药</p><ul><li>已知有11瓶无色无味的药水，其中有1瓶有毒并且其他10瓶无毒，喝了有毒的药水后会在23个小时之后的一个小时内毒发身亡（死亡时间在1个小时内随机）。现在有4只老鼠，如何在一天之内(第二天)找出这瓶有毒的药水？</li></ul><p>以二进制计数方式对11瓶药编号（如下）：</p><ol><li>第一瓶药 ： 0 0 0 1</li><li>第二瓶药 ： 0 0 1 0</li><li>第三瓶药 ： 0 0 1 1</li><li>第四瓶药 ： 0 1 0 0</li><li>第五瓶药 ： 0 1 0 1</li><li>第六瓶药 ： 0 1 1 0</li><li>第七瓶药 ： 0 1 1 1</li><li>第八瓶药 ： 1 0 0 0</li><li>第九瓶药 ： 1 0 0 1</li><li>第十瓶药 ： 1 0 1 0</li><li>第十一瓶药： 1 0 1 1</li></ol><p>四只老鼠分别按照“1”对应的位置喝药即可。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;计算机应用数学—–每周智力题&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="计算机应用数学" scheme="https://xayah-rebel.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6/"/>
+    
+    
+    <category term="math" scheme="https://xayah-rebel.github.io/tags/math/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
