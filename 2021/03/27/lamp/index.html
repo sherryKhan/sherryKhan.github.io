@@ -639,9 +639,7 @@
 <p>​    DirectoryIndex index.html index.html.var index.htm index.php &lt;==默认首页  402行左右</p>
 <p>找到 AddDefaultCharset UTF-8     &lt;==将其注释掉    747行左右</p>
 <p>找到： AddType application/x-gzip .gz .tgz<br>在该行下面添加 AddType application/x-httpd-php .php      781行左右</p>
-<p>找到<br>&lt;Directory “/var/www/html”&gt;</p>
-<pre><code>Options Indexes FollowSymLinks    &lt;==将Indexs删除掉  331行左右
-</code></pre>
+<p>找到<br>&lt;Directory “/var/www/html”&gt;<br>Options Indexes FollowSymLinks    &lt;==将Indexs删除掉  331行左右</p>
 </li>
 <li><p>配置PHP</p>
 <p>vim /etc/httpd/conf.d/php.conf</p>
