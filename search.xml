@@ -4,33 +4,6 @@
   
     
     <entry>
-      <title>Tengine安装配置</title>
-      <link href="2021/03/28/tengine/"/>
-      <url>2021/03/28/tengine/</url>
-      
-        <content type="html"><![CDATA[<h2 id="Tengine安装配置说明"><a href="#Tengine安装配置说明" class="headerlink" title="Tengine安装配置说明"></a>Tengine安装配置说明</h2><p>安装环境：CentOS Linux 6（最新版CentOS6.10），CentOS Linux 7 8系列未测试</p><p>版本：适用tengine2.2.*系列（最新版tengine2.2.3），tengine2.3.*系列有不同</p><h3 id="一、安装配置Tengine"><a href="#一、安装配置Tengine" class="headerlink" title="一、安装配置Tengine"></a>一、安装配置Tengine</h3><h4 id="1、下载Tengine安装包"><a href="#1、下载Tengine安装包" class="headerlink" title="1、下载Tengine安装包"></a>1、下载Tengine安装包</h4><pre><code>wget http://tengine.taobao.org/download/tengine-2.2.3.tar.gz</code></pre><h4 id="2、解压缩"><a href="#2、解压缩" class="headerlink" title="2、解压缩"></a>2、解压缩</h4><pre><code>tar zxvf tengine-2.2.3.tar.gz</code></pre><h4 id="3、安装所缺少的依赖包"><a href="#3、安装所缺少的依赖包" class="headerlink" title="3、安装所缺少的依赖包"></a>3、安装所缺少的依赖包</h4><pre><code>yum -y install gcc openssl openssl-devel pcre pcre-devel zlib zlib-devel</code></pre><h4 id="4、进入解压出来的文件夹“Tengine-2-2-3”，执行如下命令："><a href="#4、进入解压出来的文件夹“Tengine-2-2-3”，执行如下命令：" class="headerlink" title="4、进入解压出来的文件夹“Tengine-2.2.3”，执行如下命令："></a>4、进入解压出来的文件夹“Tengine-2.2.3”，执行如下命令：</h4><pre><code>./configure</code></pre><p>如需IPV6支持则执行：</p><p>（ –with-ipv6必须加，让nginx开启IPV6支持配置）</p><pre><code>./configure --prefix=/usr/local/nginx --with-ipv6</code></pre><h4 id="5、configure成功之后，执行命令："><a href="#5、configure成功之后，执行命令：" class="headerlink" title="5、configure成功之后，执行命令："></a>5、configure成功之后，执行命令：</h4><pre><code>make</code></pre><h4 id="6、运行安装命令："><a href="#6、运行安装命令：" class="headerlink" title="6、运行安装命令："></a>6、运行安装命令：</h4><pre><code>make install</code></pre><h4 id="7、默认安装路径为-usr-local-nginx"><a href="#7、默认安装路径为-usr-local-nginx" class="headerlink" title="7、默认安装路径为: /usr/local/nginx"></a>7、默认安装路径为: /usr/local/nginx</h4><h4 id="8、修改配置Tengine"><a href="#8、修改配置Tengine" class="headerlink" title="8、修改配置Tengine"></a>8、修改配置Tengine</h4><h5 id="8-1修改nginx配置文件-usr-local-nginx-conf-nginx-conf，增加语句"><a href="#8-1修改nginx配置文件-usr-local-nginx-conf-nginx-conf，增加语句" class="headerlink" title="8.1修改nginx配置文件/usr/local/nginx/conf/nginx.conf，增加语句"></a>8.1修改nginx配置文件/usr/local/nginx/conf/nginx.conf，增加语句</h5><p>client_max_body_size 100m; #客户端上传文件大小子限制</p><p>server_names_hash_bucket_size 128; #服务器名称长度限制</p><p>修改最大连接数（Web服务器性能不足时，可用第2个图设置，减少一下转发速度）  </p><pre><code>vim /usr/local/nginx/conf/nginx.conf</code></pre><h5 id="8-2修改Linux系统最大打开文件数-每次linux登陆需重新设置"><a href="#8-2修改Linux系统最大打开文件数-每次linux登陆需重新设置" class="headerlink" title="8.2修改Linux系统最大打开文件数(每次linux登陆需重新设置)"></a>8.2修改Linux系统最大打开文件数(每次linux登陆需重新设置)</h5><pre><code>ulimit -n 102400ulimit -s unlimitedulimit -a</code></pre><p>ulimit -n 102400   //ulimit -a 查看当前限制数</p><p>ulimit -s unlimited   //ulimit -a 查看当前限制数</p><h5 id="8-3修改nginx配置文件-usr-local-nginx-conf-nginx-conf，增加一条语句"><a href="#8-3修改nginx配置文件-usr-local-nginx-conf-nginx-conf，增加一条语句" class="headerlink" title="8.3修改nginx配置文件/usr/local/nginx/conf/nginx.conf，增加一条语句"></a>8.3修改nginx配置文件/usr/local/nginx/conf/nginx.conf，增加一条语句</h5><pre><code>include /usr/local/nginx/conf/other/*.conf</code></pre><h5 id="8-4建立other目录"><a href="#8-4建立other目录" class="headerlink" title="8.4建立other目录"></a>8.4建立other目录</h5><pre><code>mkdir /usr/local/nginx/conf/other</code></pre><p>//////在other目录中添加网站反向代理配置文件 xxx.henau.edu.cn.conf////  </p><h4 id="9、添加自动启动"><a href="#9、添加自动启动" class="headerlink" title="9、添加自动启动"></a>9、添加自动启动</h4><p># vim /etc/rc.d/rc.local</p><p>增加 /usr/local/nginx/sbin/nginx -s start</p><p>停止或关闭Nginx：/usr/local/nginx/sbin/nginx -s stop</p><p>正常停止或关闭Nginx：/usr/local/nginx/sbin/nginx -s quit</p><p>配置文件修改重装载命令：/usr/local/nginx/sbin/nginx -s reload</p><h3 id="二、隐藏Tengine版本信息"><a href="#二、隐藏Tengine版本信息" class="headerlink" title="二、隐藏Tengine版本信息"></a>二、隐藏Tengine版本信息</h3><h4 id="1、Http中的版本信息"><a href="#1、Http中的版本信息" class="headerlink" title="1、Http中的版本信息"></a>1、Http中的版本信息</h4><p>修改/usr/local/nginx/conf/nginx.conf，设置隐藏版本号:</p><pre><code>server_tag off;server_info off; server_tokens off;</code></pre><h4 id="2、PHP中的Nginx版本信息"><a href="#2、PHP中的Nginx版本信息" class="headerlink" title="2、PHP中的Nginx版本信息"></a>2、PHP中的Nginx版本信息</h4><p>修改/usr/local/nginx/conf/ fastcgi.conf，注释掉nginx版本行</p><h4 id="3、50x错误信息"><a href="#3、50x错误信息" class="headerlink" title="3、50x错误信息"></a>3、50x错误信息</h4><p>修改/usr/local/nginx/html/50x.html和index.html两个文件，删除包含版本信息内容。  </p><h4 id="4、404错误信息"><a href="#4、404错误信息" class="headerlink" title="4、404错误信息"></a>4、404错误信息</h4><p>在/usr/local/nginx/html/目录建立404.html</p><h3 id="三、修改防火墙"><a href="#三、修改防火墙" class="headerlink" title="三、修改防火墙"></a>三、修改防火墙</h3><p>修改防火墙。开放80、443等端口：</p><pre><code>vim /etc/sysconfig/iptables</code></pre><p>全部修改完之后重启iptables：</p><pre><code>service iptables restart</code></pre><p>或者关闭防火墙：(注意中间的是两个英式小短线;重启)  </p><pre><code>chkconfig --level 35 iptables off</code></pre><p>其他相关命令：</p><p>chkconfig iptables off  （设置开机不启动ipv4防火墙）</p><p>chkconfig iptables on  （设置开机启动ipv4防火墙）</p><p>service iptables start  （启动iptables服务）</p><p>service iptables stop  （关闭iptables服务）</p><p>service iptables status （查看iptables服务状态）</p><pre><code>chkconfig iptables offchkconfig iptables onservice iptables startservice iptables stopservice iptables status</code></pre><p>修改IPV6防火墙（如果支持），开放80、8080等端口</p><pre><code>vim /etc/sysconfig/ip6tables</code></pre><p>重启ip6tables服务：</p><pre><code>service ip6tables restart</code></pre><p>其他相关命令：</p><p>chkconfig ip6tables off  （设置开机不启动ipv6防火墙）</p><p>chkconfig ip6tables on  （设置开机启动ipv6防火墙）</p><p>service ip6tables start  （启动ip6tables服务）</p><p>service ip6tables stop  （关闭ip6tables服务）</p><p>service ip6tables status （查看ip6tables服务状态）</p><pre><code>chkconfig ip6tables offchkconfig ip6tables onservice ip6tables startservice ip6tables stopservice ip6tables status</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> Tengine </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Linux </tag>
-            
-            <tag> 服务器 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>LAMP环境搭建</title>
       <link href="2021/03/28/lamp/"/>
       <url>2021/03/28/lamp/</url>
