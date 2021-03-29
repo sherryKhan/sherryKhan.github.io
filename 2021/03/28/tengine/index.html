@@ -264,6 +264,17 @@
     
   </li>
   
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light" target="_blank">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
   <li>
     <a href="#searchModal" class="modal-trigger waves-effect waves-light">
       <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
@@ -330,6 +341,17 @@
 			    <i class="fa-fw fas fa-archive"></i>
 			
 			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
 		</a>
           
         </li>
@@ -1011,7 +1033,7 @@ service ip6tables status
 <script src="https://cdn.jsdelivr.net/gh/small-rose/small-rose.github.io/libs/valine/Valine.min.js"></script>
 
 <script>
-    let metaPlaceholder = {"nick":"昵称/QQ号(必填)","mail":"邮箱(必填)","link":"网址(https://)"};
+    let metaPlaceholder = {"nick":"昵称/QQ号","mail":"邮箱","link":"网址(https://)"};
 
     new Valine({
         el: '#vcomments',
@@ -1021,7 +1043,7 @@ service ip6tables status
         verify: 'true' === 'true',
         visitor: 'true' === 'true',
         avatar: 'monsterid',
-        pageSize: '10',
+        pageSize: '12',
         lang: 'zh-CN',
         placeholder: '你来人间一趟，你要看看太阳，和你的心上人，一起走在街上!',
         meta: ["nick", "mail", "link"],
