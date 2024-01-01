@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="留言板,  ">
+    <meta name="keywords" content="诗词,  ">
     <meta name="description" content="读书、思考、进步">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>留言板 |  </title>
+    <title>诗词 |  </title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -453,73 +453,631 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                天上人间
-                
-            </div>
-
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: ['邀一夜星河，去你梦里做客。','我心慕你，如鹿饮水，鸟归林。','站在记忆中的窗边，在第一页，在最早的时刻，在所有诗句之前。','错过了落日余晖，也要记得有满天星辰！','梦里佳期，只许庭花与月知。','总会相逢，就像山川河流，就像万河归海。','醉后不知天在水，满船清梦压星河。','窗外星子昏黄，我看见了你眼里酿酒的月亮。','凌晨四点醒了，发现海棠花未眠。','他日云水身，相望处、无南北。','为了明天能有曙光，爱与恨都要被隐藏。','踏遍山河，人间值得。','除却君身三重雪，天下谁人陪白衣。','风铃响，故人归，我在等风起，也在等你回！','今天的天空像一封深蓝色的情书。','满载一船秋色，平铺十里湖光。','林深时见鹿，溪午不闻钟。','等一场秋风再起，花开如绎。'],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
-                
-            </div>
-        </div>
-    </div>
-</div>
+    
 
 
-<script>
-    $('.bg-cover').css('background-image', 'url(/medias/banner/0.jpg)');
-</script>
-<!-- <script>
-    $('.bg-cover').css('background-image', 'url(/medias/featureimages/6.jpg)');
-</script> -->
 
-
-    </div>
-</div>
-
-<main class="content">
-    <div id="contact" class="container chip-container">
-        <div class="card">
-            <div class="card-content">
-                <div class="tag-title center-align">
-                    <i class="fas fa-comments"></i>&nbsp;&nbsp;留言板
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">诗词</h1>
                 </div>
-                <h2 id="畅所欲言"><a href="#畅所欲言" class="headerlink" title="畅所欲言"></a>畅所欲言</h2><hr>
-<p>在这里可以留下你的足迹，欢迎在下方留言，欢迎交换友链，一起交流学习！</p>
-<p>建议在上面来必力评论框留言评论，我能第一时间看到，而且可以添加图片等，不过需要登录，不愿意登录的可以在下面Valine评论框留言评论。以便分类管理，感谢~</p>
-
             </div>
         </div>
-        <div class="card">
-            
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+        /* right: 0px; */
+    }
+
+    /* .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    } */
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+        padding-top: 1px;
+        background-color: rgb(255, 255, 255,0.7);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    }
+
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%91%98%E5%BD%95/">
+                                <span class="chip bg-color">摘录</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%AF%97%E8%AF%8D/">
+                                <span class="chip bg-color">诗词</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%B2%BE%E7%A5%9E%E4%B9%8B%E6%B5%B7/" class="post-category">
+                                精神之海
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-01-01
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2024-01-01
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    6 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h6 id="滾滾長江東逝水，浪花淘盡英雄。是非成敗轉頭空。青山依舊在，幾度夕陽紅。"><a href="#滾滾長江東逝水，浪花淘盡英雄。是非成敗轉頭空。青山依舊在，幾度夕陽紅。" class="headerlink" title="滾滾長江東逝水，浪花淘盡英雄。是非成敗轉頭空。青山依舊在，幾度夕陽紅。"></a>滾滾長江東逝水，浪花淘盡英雄。是非成敗轉頭空。青山依舊在，幾度夕陽紅。</h6><h6 id="白髮漁樵江渚上，慣看秋月春風。一壺濁酒喜相逢。古今多少事，都付笑談中。"><a href="#白髮漁樵江渚上，慣看秋月春風。一壺濁酒喜相逢。古今多少事，都付笑談中。" class="headerlink" title="白髮漁樵江渚上，慣看秋月春風。一壺濁酒喜相逢。古今多少事，都付笑談中。"></a>白髮漁樵江渚上，慣看秋月春風。一壺濁酒喜相逢。古今多少事，都付笑談中。</h6><h2 id="纳兰词"><a href="#纳兰词" class="headerlink" title="纳兰词"></a>纳兰词</h2><h3 id="木兰花令·拟古决绝词"><a href="#木兰花令·拟古决绝词" class="headerlink" title="木兰花令·拟古决绝词"></a>木兰花令·拟古决绝词</h3><div style="text-align: center;">
+
+<pre><code>人生若只如初见，何事秋风悲画扇。
+等闲变却故人心，却道故人心易变。
+骊山语罢清宵半，泪雨霖铃终不怨。
+何如薄幸锦衣郎，比翼连枝当日愿。
+</code></pre>
+</div>
+
+
+
+<h3 id="浣溪沙"><a href="#浣溪沙" class="headerlink" title="浣溪沙"></a>浣溪沙</h3><div style="text-align: center;">
+
+<pre><code>残雪凝辉冷画屏，
+落梅横笛已三更，
+更无人处月胧明。
+我是人间惆怅客，
+志君何事泪纵横，
+断肠声里忆平生。
+</code></pre>
+</div>
+
+
+
+<h3 id="采桑子·塞上咏雪花"><a href="#采桑子·塞上咏雪花" class="headerlink" title="采桑子·塞上咏雪花"></a>采桑子·塞上咏雪花</h3><div style="text-align: center;">
+
+<pre><code>非关癖爱轻模样，冷处偏佳。
+别有根芽，不是人间富贵花。
+谢娘别后谁能惜，飘泊天涯。
+寒月悲笳，万里西风瀚海沙。
+</code></pre>
+</div>
+
+
+
+<h3 id="长相思"><a href="#长相思" class="headerlink" title="长相思"></a>长相思</h3><div style="text-align: center;">
+
+<pre><code>山一程，水一程，
+身向榆关那畔行，
+夜深千帐灯。
+风一更，雪一更，
+聒碎乡心梦不成，
+故园无此声。
+</code></pre>
+</div>
+
+
+
+<h2 id="李煜词"><a href="#李煜词" class="headerlink" title="李煜词"></a>李煜词</h2><h3 id="虞美人·春花秋月何时了"><a href="#虞美人·春花秋月何时了" class="headerlink" title="虞美人·春花秋月何时了"></a>虞美人·春花秋月何时了</h3><div style="text-align: center;">
+
+<pre><code>春花秋月何时了，
+往事知多少？
+小楼昨夜又东风，
+故国不堪回首月明中！
+
+雕栏玉砌应犹在，
+只是朱颜改。
+问君能有几多愁？
+恰似一江春水向东流。
+</code></pre>
+</div>
+
+
+
+<h3 id="相见欢·林花谢了春红"><a href="#相见欢·林花谢了春红" class="headerlink" title="相见欢·林花谢了春红"></a>相见欢·林花谢了春红</h3><div style="text-align: center;">
+
+<pre><code>林花谢了春红，
+太匆匆，
+无奈朝来寒雨晚来风。
+胭脂泪，
+相留醉，
+几时重，
+自是人生长河们水长东。
+</code></pre>
+</div>
+### 相见欢·林花谢了春红
+
+<div style="text-align: center;">
+
+<pre><code>帘外雨潺潺，
+春意阑珊。
+罗衾不耐五更寒。
+梦里不知身是客，
+一晌贪欢。
+独自莫凭栏，
+无限江山，
+别时容易见时难。
+流水落花春去也，
+天上人间。
+</code></pre>
+</div>
+
+
+
+<h2 id="仓央嘉措"><a href="#仓央嘉措" class="headerlink" title="仓央嘉措"></a>仓央嘉措</h2><h3 id="不负如来不负卿"><a href="#不负如来不负卿" class="headerlink" title="不负如来不负卿"></a>不负如来不负卿</h3><div style="text-align: center;">
+
+<pre><code>美人不是母胎生， 应是桃花树长成，
+已恨桃花容易落， 落花比汝尚多情。
+静时修止动修观， 历历情人挂目前，
+若将此心以学道， 即生成佛有何难？
+结尽同心缔尽缘， 此生虽短意缠绵，
+与卿再世相逢日， 玉树临风一少年。
+不观生灭与无常， 但逐轮回向死亡，
+绝顶聪明矜世智， 叹他于此总茫茫。
+山头野马性难驯， 机陷犹堪制彼身，
+自叹神通空具足， 不能调伏枕边人。
+欲倚绿窗伴卿卿， 颇悔今生误道行。
+有心持钵丛林去， 又负美人一片情。
+静坐修观法眼开， 祈求三宝降灵台，
+观中诸圣何曾见？ 不请情人却自来。
+入山投谒得道僧， 求教上师说因明。
+争奈相思无拘检， 意马心猿到卿卿。
+曾虑多情损梵行， 入山又恐别倾城，
+世间安得两全法， 不负如来不负卿。
+</code></pre>
+</div>
+
+
+
+<h3 id="问佛"><a href="#问佛" class="headerlink" title="问佛"></a>问佛</h3><div style="text-align: center;">
+
+<pre><code>我问佛：为何不给所有女子羞花闭月的容颜？
+佛曰：那只是昙花的一现，用来蒙蔽世俗的眼
+没有什么美可以抵过一颗纯净仁爱的心
+我把它赐给每一个女子
+可有人让它蒙上了灰
+
+我问佛：世间为何有那么多遗憾？
+佛曰：这是一个婆娑世界，婆娑即遗憾
+没有遗憾，给你再多幸福也不会体会快乐
+
+我问佛：如何让人们的心不再感到孤单？
+佛曰：每一颗心生来就是孤单而残缺的
+多数带着这种残缺度过一生
+只因与能使它圆满的另一半相遇时
+不是疏忽错过，就是已失去了拥有它的资格
+
+我问佛：如果遇到了可以爱的人，却又怕不能把握该怎么办？
+佛曰：留人间多少爱，迎浮世千重变
+和有情人，做快乐事
+别问是劫是缘
+
+我问佛：如何才能如你般睿智？
+佛曰：佛是过来人，人是未来佛 佛把世间万物分为十界：佛,菩萨,声闻,缘觉,天,阿修罗,人,畜生,饿鬼,地狱；
+天,阿修罗,人,畜生,饿鬼,地狱.为六道众生；
+六道众生要经历因果轮回,从中体验痛苦。
+在体验痛苦的过程中,只有参透生命的真谛,才能得到永生。
+凤凰，涅盘
+
+佛曰，人生有八苦：生，老，病，死，爱别离，怨长久，求不得，放不下。
+佛曰：命由己造，相由心生，世间万物皆是化相，心不动，万物皆不动，心不变，万物皆不变。
+佛曰：坐亦禅，行亦禅，一花一世界，一叶一如来，春来花自青，秋至叶飘零，无穷般若心自在，语默动静体自然。
+
+佛说：万法皆生，皆系缘份，偶然的相遇，暮然的回首，注定彼此的一生，只为眼光交汇的刹那。
+缘起即灭，缘生已空。
+
+我也曾如你般天真
+佛门中说一个人悟道有三阶段：“勘破、放下、自在。”
+的确，一个人必须要放下，才能得到自在。
+
+我问佛：为什么总是在我悲伤的时候下雪
+佛说：冬天就要过去，留点记忆
+
+我问佛:为什么每次下雪都是我不在意的夜晚
+佛说:不经意的时候人们总会错过很多真正的美丽
+
+我问佛:那过几天还下不下雪
+佛说:不要只盯着这个季节，错过了今冬
+</code></pre>
+</div>
+
+
+
+<h3 id="那一天"><a href="#那一天" class="headerlink" title="那一天"></a>那一天</h3><div style="text-align: center;">
+
+<pre><code>那一天，
+我闭目在经殿的香雾中，
+蓦然听见你颂经中的真言；
+
+那一月，
+我摇动所有的经筒，
+不为超度，
+只为触摸你的指尖；
+
+那一年，
+磕长头匍匐在山路，
+不为觐见，
+只为贴着你的温暖；
+
+那一世，
+转山转水转佛塔，
+不为修来世，
+只为途中与你相见
+
+那一月，
+我轻转过所有经筒，
+不为超度，只为触摸你的指纹；
+
+那一年，我磕长头拥抱尘埃，
+不为朝佛，只为贴着你的温暖；
+
+那一世，我细翻遍十万大山，
+不为修来世，只为路中能与你相遇；
+
+只是，就在那一夜，我忘却了所有，
+抛却了信仰，舍弃了轮回，
+只为，那曾在佛前哭泣的玫瑰，
+早已失去旧日的光泽
+</code></pre>
+</div>
+
+
+
+<h3 id="热爱生命"><a href="#热爱生命" class="headerlink" title="热爱生命"></a>热爱生命</h3><div style="text-align: center;">
+
+<pre><code>我不去想是否能够成功
+既然选择了远方
+便只顾风雨兼程
+我不去想能否赢得爱情
+既然钟情于玫瑰
+就勇敢吐露真诚
+我不去想身后会不会袭来寒风冷雨
+既然目标是地平线
+留给世界的只能是背影
+我不去想未来是平坦还是泥泞
+只要热爱生命
+一切，都在意料之中
+</code></pre>
+</div>
+
+
+
+<h2 id="现代诗词"><a href="#现代诗词" class="headerlink" title="现代诗词"></a>现代诗词</h2><h3 id="也许"><a href="#也许" class="headerlink" title="也许"></a>也许</h3><div style="text-align: center;">
+
+<pre><code>也许，永远没有那一天
+&gt;前程如朝霞版绚烂
+也许，永远没有那一天
+成功如灯火般辉煌
+也许，只能是这样
+攀援却达不到峰顶
+也许，只能是这样
+奔流却掀不起波浪
+也许，我能给予你的只有一颗
+饱经沧桑的心
+和满脸风霜
+</code></pre>
+</div>
+
+
+
+<h3 id="思念"><a href="#思念" class="headerlink" title="思念"></a>思念</h3><div style="text-align: center;">
+
+<pre><code>我叮咛你的
+你说 不会遗忘
+你告诉我的
+我也 全部珍藏
+对于我来说
+记忆是飘不落的日子
+永远不会发黄
+相聚的时候 总是很短
+期待的时候 总是很长
+岁月的溪水边
+捡拾起多少闪亮的诗行
+如果你要想念我
+就望一望天上那
+闪烁的繁星
+有我寻觅你的
+目--光
+</code></pre>
+</div>
+
+
+
+<h3 id="道别"><a href="#道别" class="headerlink" title="道别"></a>道别</h3><div style="text-align: center;">
+
+<pre><code>我对禅说：
+他日再见  要待来年
+蝉对我说：
+他日重逢  要待来生
+</code></pre>
+</div>
+
+<div style="text-align: center;">
+
+<pre><code>
+</code></pre>
+</div>
+
+
+
+<h3 id="宫崎骏"><a href="#宫崎骏" class="headerlink" title="宫崎骏"></a>宫崎骏</h3><div style="text-align: center;">
+
+<pre><code>你住的城市下雨了
+很想问你有没有带伞
+可是我忍住了
+因为我怕你说没带
+而我又无能为力
+就像是我爱你
+却给不到你想要的陪伴
+</code></pre>
+</div>
+
+
+
+<h3 id="断章·卞之琳"><a href="#断章·卞之琳" class="headerlink" title="断章·卞之琳"></a>断章·卞之琳</h3><div style="text-align: center;">
+
+<pre><code>站在桥上看风景
+看风景人在楼上看你
+看风景人在楼上看你
+明月装饰了你的窗子
+你装饰了别人的梦
+</code></pre>
+</div><div style="text-align: center;">
+
+<pre><code>
+</code></pre>
+</div>
+
+<div style="text-align: center;">
+
+<pre><code>
+</code></pre>
+</div><div style="text-align: center;">
+
+<pre><code>
+</code></pre>
+</div>
+
+<div style="text-align: center;">
+
+<pre><code>
+</code></pre>
+</div><div style="text-align: center;">
+
+<pre><code>
+</code></pre>
+</div>
+
+<div style="text-align: center;">
+
+<pre><code>
+</code></pre>
+</div><div style="text-align: center;">
+
+<pre><code>
+</code></pre>
+</div>
+
+<div style="text-align: center;">
+
+<pre><code>
+</code></pre>
+</div><div style="text-align: center;">
+
+<pre><code>
+</code></pre>
+</div>
+
+<div style="text-align: center;">
+
+<pre><code>
+</code></pre>
+</div><div style="text-align: center;">
+
+<pre><code>
+</code></pre>
+</div>
+
+<div style="text-align: center;">
+
+<pre><code>
+</code></pre>
+</div>
+
+            </div>
+            <hr/>
 
             
 
-            
 
-            
 
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%91%98%E5%BD%95/">
+                                    <span class="chip bg-color">摘录</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%AF%97%E8%AF%8D/">
+                                    <span class="chip bg-color">诗词</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
             
-            <style>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
     .valine-card {
         margin: 1.5rem auto;
     }
@@ -816,12 +1374,247 @@
         <i class="fas fa-comments"></i>
     </a>
 </div>"></script>
-            
-			
-			
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2024/01/01/sui-shou-ji/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="随手记">
+                        
+                        <span class="card-title">随手记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            我见过春日夏风，秋月冬雪，也曾踏遍南水北山，东麓西岭，可这四季春秋，苍山央水，都不及你瞅我展眉一笑随手记
+
+要一个黄昏 满是风 和正在落下的夕阳
+如果麦子刚好熟了 炊烟恰恰升起
+那只白鸽贴着水面飞过 栖息于一颗芦苇
+而芦苇正好准备了一首曲子
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-01-01
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%8F%A4%E5%85%B8%E4%B9%8B%E7%BE%8E/" class="post-category">
+                                    古典之美
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%91%98%E5%BD%95/">
+                        <span class="chip bg-color">摘录</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/01/01/sun-zi-bing-fa-san-shi-liu-ji/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="孙子兵法 三十六计">
+                        
+                        <span class="card-title">孙子兵法 三十六计</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            孙子兵法&amp;&amp;三十六计（原文）孙子兵法始計篇    第一    孫子曰：兵者，國之大事，死生之地，存亡之道，不可不察也。
+    
+    故經之以五事，校之以計而索其情：一曰道，二曰天，三曰地，四曰將，五曰法。道者，令民與上
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%B2%BE%E7%A5%9E%E4%B9%8B%E6%B5%B7/" class="post-category">
+                                    精神之海
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%91%98%E5%BD%95/">
+                        <span class="chip bg-color">摘录</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AF%97%E8%AF%8D/">
+                        <span class="chip bg-color">诗词</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+
+<!-- 代码块复制 -->
+
+
+<!-- 代码块收缩 -->
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
         </div>
     </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down" style="right: 20px;bottom: 124px;">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
 </main>
+
+
 
 
     <footer class="page-footer bg-color">
