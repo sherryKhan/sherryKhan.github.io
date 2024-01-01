@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="LAMP环境搭建,  ">
+    <meta name="keywords" content="Tengine安装配置,  ">
     <meta name="description" content="读书、思考、进步">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>LAMP环境搭建 |  </title>
+    <title>Tengine安装配置 |  </title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -457,12 +457,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">LAMP环境搭建</h1>
+                    <h1 class="description center-align post-title">Tengine安装配置</h1>
                 </div>
             </div>
         </div>
@@ -606,8 +606,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                服务器学习
+                            <a href="/categories/Tengine/" class="post-category">
+                                Tengine
                             </a>
                         
                     </div>
@@ -619,7 +619,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-03-28
+                    2024-01-01
                 </div>
                 
 
@@ -633,14 +633,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    802
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    3 分
                 </div>
                 
 
@@ -655,113 +655,92 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Linux环境安装教程"><a href="#Linux环境安装教程" class="headerlink" title="Linux环境安装教程"></a>Linux环境安装教程</h1><h2 id="一、系统约定"><a href="#一、系统约定" class="headerlink" title="一、系统约定"></a>一、系统约定</h2><p>操作系统采用CentOS 6.5，使用CentOS自身提供的Apache、PHP、MySQL搭建LAMP服务器。Apache 2.2.15<br>php 5.3.3<br>mysql 5.1.73</p>
-<h2 id="二、系统环境部署及调整"><a href="#二、系统环境部署及调整" class="headerlink" title="二、系统环境部署及调整"></a>二、系统环境部署及调整</h2><h3 id="1、检查系统是否正常"><a href="#1、检查系统是否正常" class="headerlink" title="1、检查系统是否正常"></a>1、检查系统是否正常</h3><p>（检查有无系统级错误信息） </p>
-<pre><code>more /var/log/messages
+                <h2 id="Tengine安装配置说明"><a href="#Tengine安装配置说明" class="headerlink" title="Tengine安装配置说明"></a>Tengine安装配置说明</h2><p>安装环境：CentOS Linux 6（最新版CentOS6.10），CentOS Linux 7 8系列未测试</p>
+<p>版本：适用tengine2.2.*系列（最新版tengine2.2.3），tengine2.3.*系列有不同</p>
+<h3 id="一、安装配置Tengine"><a href="#一、安装配置Tengine" class="headerlink" title="一、安装配置Tengine"></a>一、安装配置Tengine</h3><h4 id="1、下载Tengine安装包"><a href="#1、下载Tengine安装包" class="headerlink" title="1、下载Tengine安装包"></a>1、下载Tengine安装包</h4><pre><code>wget http://tengine.taobao.org/download/tengine-2.2.3.tar.gz
 </code></pre>
-<p>（检查硬件设备是否有错误信息）</p>
-<pre><code>dmesg
+<h4 id="2、解压缩"><a href="#2、解压缩" class="headerlink" title="2、解压缩"></a>2、解压缩</h4><pre><code>tar zxvf tengine-2.2.3.tar.gz
 </code></pre>
-<p> （检查网卡设置是否正确）</p>
-<pre><code>ifconfig
+<h4 id="3、安装所缺少的依赖包"><a href="#3、安装所缺少的依赖包" class="headerlink" title="3、安装所缺少的依赖包"></a>3、安装所缺少的依赖包</h4><pre><code>yum -y install gcc openssl openssl-devel pcre pcre-devel zlib zlib-devel
 </code></pre>
-<p>ping <a target="_blank" rel="noopener" href="http://www.163.com(检查网络是否正常)/">www.163.com（检查网络是否正常）</a></p>
-<h3 id="2、关闭不需要的服务"><a href="#2、关闭不需要的服务" class="headerlink" title="2、关闭不需要的服务"></a>2、关闭不需要的服务</h3><p>ntsysv 以下仅列出需要启动的服务，未列出的服务一律推荐关闭：</p>
-<pre><code>atd crond haldaemon httpd iptables irqbalance mysqld network postfix rsyslog sshd
+<h4 id="4、进入解压出来的文件夹“Tengine-2-2-3”，执行如下命令："><a href="#4、进入解压出来的文件夹“Tengine-2-2-3”，执行如下命令：" class="headerlink" title="4、进入解压出来的文件夹“Tengine-2.2.3”，执行如下命令："></a>4、进入解压出来的文件夹“Tengine-2.2.3”，执行如下命令：</h4><pre><code>./configure
 </code></pre>
-<h3 id="3、重新启动系统"><a href="#3、重新启动系统" class="headerlink" title="3、重新启动系统"></a>3、重新启动系统</h3><pre><code>init 6 
+<p>如需IPV6支持则执行：</p>
+<p>（ –with-ipv6必须加，让nginx开启IPV6支持配置）</p>
+<pre><code>./configure --prefix=/usr/local/nginx --with-ipv6
 </code></pre>
-<h3 id="4、使用-yum-程序安装所需开发包（以下为标准的-RPM-包名称）"><a href="#4、使用-yum-程序安装所需开发包（以下为标准的-RPM-包名称）" class="headerlink" title="4、使用 yum 程序安装所需开发包（以下为标准的 RPM 包名称）"></a>4、使用 yum 程序安装所需开发包（以下为标准的 RPM 包名称）</h3><pre><code>yum install gd gd-devel php-gd libxml2 libmcrypt cronolog ntp vim-enhanced gcc gcc-c++ gcc-g77 flex bison autoconf automake bzip2-devel ncurses-devel libjpeg-devel libpng-devel libtiff-devel freetype-devel pam-devel
+<h4 id="5、configure成功之后，执行命令："><a href="#5、configure成功之后，执行命令：" class="headerlink" title="5、configure成功之后，执行命令："></a>5、configure成功之后，执行命令：</h4><pre><code>make
 </code></pre>
-<h2 id="三、安装配置L-A-M-P环境"><a href="#三、安装配置L-A-M-P环境" class="headerlink" title="三、安装配置L.A.M.P环境"></a>三、安装配置L.A.M.P环境</h2><h3 id="1、检查LAMP所需软件：httpd-mysql-mysql-server-php-php-devel-php-mysql，如果没有则使用yum安装。"><a href="#1、检查LAMP所需软件：httpd-mysql-mysql-server-php-php-devel-php-mysql，如果没有则使用yum安装。" class="headerlink" title="1、检查LAMP所需软件：httpd mysql mysql-server php php-devel php-mysql，如果没有则使用yum安装。"></a>1、检查LAMP所需软件：httpd mysql mysql-server php php-devel php-mysql，如果没有则使用yum安装。</h3><pre><code>yum install httpd mysql mysql-server php php-mysql
+<h4 id="6、运行安装命令："><a href="#6、运行安装命令：" class="headerlink" title="6、运行安装命令："></a>6、运行安装命令：</h4><pre><code>make install
 </code></pre>
-<h3 id="2、配置Apache"><a href="#2、配置Apache" class="headerlink" title="2、配置Apache"></a>2、配置Apache</h3><pre><code>vim /etc/httpd/conf/httpd.conf
+<h4 id="7、默认安装路径为-usr-local-nginx"><a href="#7、默认安装路径为-usr-local-nginx" class="headerlink" title="7、默认安装路径为: /usr/local/nginx"></a>7、默认安装路径为: /usr/local/nginx</h4><h4 id="8、修改配置Tengine"><a href="#8、修改配置Tengine" class="headerlink" title="8、修改配置Tengine"></a>8、修改配置Tengine</h4><h5 id="8-1修改nginx配置文件-usr-local-nginx-conf-nginx-conf，增加语句"><a href="#8-1修改nginx配置文件-usr-local-nginx-conf-nginx-conf，增加语句" class="headerlink" title="8.1修改nginx配置文件/usr/local/nginx/conf/nginx.conf，增加语句"></a>8.1修改nginx配置文件/usr/local/nginx/conf/nginx.conf，增加语句</h5><p>client_max_body_size 100m; #客户端上传文件大小子限制</p>
+<p>server_names_hash_bucket_size 128; #服务器名称长度限制</p>
+<p>修改最大连接数（Web服务器性能不足时，可用第2个图设置，减少一下转发速度）  </p>
+<pre><code>vim /usr/local/nginx/conf/nginx.conf
 </code></pre>
-<p>​    KeepAlive On                     &lt;==将默认的Off改为On    76行左右<br>​    MaxKeepAliveRequests 500         &lt;==将默认的100改为500以上    83行左右<br>​    Listen 80                        &lt;==监听端口80，可自己修改  136行左右<br>​    DocumentRoot “/var/www/html”     &lt;==默认根目录   292行左右<br>​    Alias /icons/ “/var/www/icons/“  &lt;==虚拟目录     551行左右</p>
-<p>​    DirectoryIndex index.html index.html.var index.htm index.php &lt;==默认首页  402行左右</p>
-<p>找到 AddDefaultCharset UTF-8     &lt;==将其注释掉    747行左右</p>
-<p>找到： AddType application/x-gzip .gz .tgz<br>在该行下面添加 AddType application/x-httpd-php .php      781行左右</p>
-<p>找到<br>&lt;Directory “/var/www/html”&gt;<br>Options Indexes FollowSymLinks    &lt;==将Indexs删除掉  331行左右</p>
-<h3 id="3、配置PHP"><a href="#3、配置PHP" class="headerlink" title="3、配置PHP"></a>3、配置PHP</h3><pre><code>vim /etc/httpd/conf.d/php.conf
-vim /etc/php.ini
+<h5 id="8-2修改Linux系统最大打开文件数-每次linux登陆需重新设置"><a href="#8-2修改Linux系统最大打开文件数-每次linux登陆需重新设置" class="headerlink" title="8.2修改Linux系统最大打开文件数(每次linux登陆需重新设置)"></a>8.2修改Linux系统最大打开文件数(每次linux登陆需重新设置)</h5><pre><code>ulimit -n 102400
+ulimit -s unlimited
+ulimit -a
 </code></pre>
-<p>​    post_max_size = 8M         &lt;==修改上传容量限制    729行左右<br>​    file_uploads = On          &lt;==允许上传            869行左右<br>​    upload_max_filesize = 2M   &lt;==修改上传容量限制    878行左右<br>​    memory_limit = 128M        &lt;==修改php内存限制     457行左右</p>
-<h3 id="4、测试apache和php"><a href="#4、测试apache和php" class="headerlink" title="4、测试apache和php"></a>4、测试apache和php</h3><pre><code>/etc/init.d/httpd start 
-/etc/init.d/httpd configtest
-chkconfig httpd on
+<p>ulimit -n 102400   //ulimit -a 查看当前限制数</p>
+<p>ulimit -s unlimited   //ulimit -a 查看当前限制数</p>
+<h5 id="8-3修改nginx配置文件-usr-local-nginx-conf-nginx-conf，增加一条语句"><a href="#8-3修改nginx配置文件-usr-local-nginx-conf-nginx-conf，增加一条语句" class="headerlink" title="8.3修改nginx配置文件/usr/local/nginx/conf/nginx.conf，增加一条语句"></a>8.3修改nginx配置文件/usr/local/nginx/conf/nginx.conf，增加一条语句</h5><pre><code>include /usr/local/nginx/conf/other/*.conf
 </code></pre>
-<p>/etc/init.d/httpd start            &lt;==立即启动</p>
-<p>/etc/init.d/httpd configtest       &lt;==测试配置文件语法</p>
-<p>chkconfig httpd on                 &lt;==开机启动www</p>
-<p>另一种启动方式</p>
-<pre><code>/usr/sbin/apachectl start
-
-/usr/sbin/apachectl stop
+<h5 id="8-4建立other目录"><a href="#8-4建立other目录" class="headerlink" title="8.4建立other目录"></a>8.4建立other目录</h5><pre><code>mkdir /usr/local/nginx/conf/other
 </code></pre>
-<p>查看是否启动</p>
-<pre><code>netstat -tulnp | grep 'httpd'
+<p>//////在other目录中添加网站反向代理配置文件 xxx.henau.edu.cn.conf////  </p>
+<h4 id="9、添加自动启动"><a href="#9、添加自动启动" class="headerlink" title="9、添加自动启动"></a>9、添加自动启动</h4><p># vim /etc/rc.d/rc.local</p>
+<p>增加 /usr/local/nginx/sbin/nginx -s start</p>
+<p>停止或关闭Nginx：/usr/local/nginx/sbin/nginx -s stop</p>
+<p>正常停止或关闭Nginx：/usr/local/nginx/sbin/nginx -s quit</p>
+<p>配置文件修改重装载命令：/usr/local/nginx/sbin/nginx -s reload</p>
+<h3 id="二、隐藏Tengine版本信息"><a href="#二、隐藏Tengine版本信息" class="headerlink" title="二、隐藏Tengine版本信息"></a>二、隐藏Tengine版本信息</h3><h4 id="1、Http中的版本信息"><a href="#1、Http中的版本信息" class="headerlink" title="1、Http中的版本信息"></a>1、Http中的版本信息</h4><p>修改/usr/local/nginx/conf/nginx.conf，设置隐藏版本号:</p>
+<pre><code>server_tag off;
+server_info off; 
+server_tokens off;
 </code></pre>
-<p>测试php<br>在/var/www/html目录下建立一个phpinfo.php文件</p>
-<pre><code>vim /var/www/html/phpinfo.php
+<h4 id="2、PHP中的Nginx版本信息"><a href="#2、PHP中的Nginx版本信息" class="headerlink" title="2、PHP中的Nginx版本信息"></a>2、PHP中的Nginx版本信息</h4><p>修改/usr/local/nginx/conf/ fastcgi.conf，注释掉nginx版本行</p>
+<h4 id="3、50x错误信息"><a href="#3、50x错误信息" class="headerlink" title="3、50x错误信息"></a>3、50x错误信息</h4><p>修改/usr/local/nginx/html/50x.html和index.html两个文件，删除包含版本信息内容。  </p>
+<h4 id="4、404错误信息"><a href="#4、404错误信息" class="headerlink" title="4、404错误信息"></a>4、404错误信息</h4><p>在/usr/local/nginx/html/目录建立404.html</p>
+<h3 id="三、修改防火墙"><a href="#三、修改防火墙" class="headerlink" title="三、修改防火墙"></a>三、修改防火墙</h3><p>修改防火墙。开放80、443等端口：</p>
+<pre><code>vim /etc/sysconfig/iptables
 </code></pre>
-<pre><code>&lt;?php phpinfo(); ?&gt;
+<p>全部修改完之后重启iptables：</p>
+<pre><code>service iptables restart
 </code></pre>
-<h3 id="5、配置MySQL"><a href="#5、配置MySQL" class="headerlink" title="5、配置MySQL"></a>5、配置MySQL</h3><p>启动服务</p>
-<pre><code>/etc/init.d/mysqld start
-
-chkconfig mysqld on
+<p>或者关闭防火墙：(注意中间的是两个英式小短线;重启)  </p>
+<pre><code>chkconfig --level 35 iptables off
 </code></pre>
-<p>测试服务</p>
-<pre><code>netstat -tulnp | grep 'mysql'
-
-mysql -u root
+<p>其他相关命令：</p>
+<p>chkconfig iptables off  （设置开机不启动ipv4防火墙）</p>
+<p>chkconfig iptables on  （设置开机启动ipv4防火墙）</p>
+<p>service iptables start  （启动iptables服务）</p>
+<p>service iptables stop  （关闭iptables服务）</p>
+<p>service iptables status （查看iptables服务状态）</p>
+<pre><code>chkconfig iptables off
+chkconfig iptables on
+service iptables start
+service iptables stop
+service iptables status
 </code></pre>
-<p>设置密码</p>
-<pre><code>mysqladmin -u root password 'yourpassword'
-
-mysql -u root -p    
-
-Enter password:
+<p>修改IPV6防火墙（如果支持），开放80、8080等端口</p>
+<pre><code>vim /etc/sysconfig/ip6tables
 </code></pre>
-<p>调优</p>
-<pre><code>vim /etc/my.cnf
+<p>重启ip6tables服务：</p>
+<pre><code>service ip6tables restart
 </code></pre>
-<p>​    MySQL数据目录<br>​    datadir=/var/lib/mysql</p>
-<h3 id="6、配置防火墙"><a href="#6、配置防火墙" class="headerlink" title="6、配置防火墙"></a>6、配置防火墙</h3><pre><code>/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT
-/etc/rc.d/init.d/iptables save
-/etc/init.d/iptables status
-/etc/init.d/iptables restart
-/etc/init.d/iptables stop 
-chkconfig --level 35 iptables off 
-vim /etc/sysconfig/iptables
+<p>其他相关命令：</p>
+<p>chkconfig ip6tables off  （设置开机不启动ipv6防火墙）</p>
+<p>chkconfig ip6tables on  （设置开机启动ipv6防火墙）</p>
+<p>service ip6tables start  （启动ip6tables服务）</p>
+<p>service ip6tables stop  （关闭ip6tables服务）</p>
+<p>service ip6tables status （查看ip6tables服务状态）</p>
+<pre><code>chkconfig ip6tables off
+chkconfig ip6tables on
+service ip6tables start
+service ip6tables stop
+service ip6tables status
 </code></pre>
-<p>/sbin/iptables -I INPUT -p tcp –dport 80 -j ACCEPT    &lt;==开放80端口</p>
-<p>/etc/rc.d/init.d/iptables save                         &lt;==保存防火墙配置</p>
-<p>/etc/init.d/iptables status     &lt;==查看防火墙服务状态</p>
-<p>/etc/init.d/iptables restart     &lt;==重启防火墙服务</p>
-<p>/etc/init.d/iptables stop              &lt;==本次关闭防火墙服务</p>
-<p>chkconfig –level 35 iptables off     &lt;==永久性关闭防火墙服务</p>
-<p>vim /etc/sysconfig/iptables     &lt;==设置或查看防火墙配置文件</p>
-<p>=========================================================================</p>
-<h2 id="四、linux，apache，php，mysql常用的查看版本信息的方法"><a href="#四、linux，apache，php，mysql常用的查看版本信息的方法" class="headerlink" title="四、linux，apache，php，mysql常用的查看版本信息的方法"></a>四、linux，apache，php，mysql常用的查看版本信息的方法</h2><h3 id="1、查看linux版本"><a href="#1、查看linux版本" class="headerlink" title="1、查看linux版本"></a>1、查看linux版本</h3><pre><code>lsb_release -a
-</code></pre>
-<p>[root@gzc /]# lsb_release -a<br>LSB Version:    :base-4.0-amd64:base-4.0-noarch:core-4.0-amd64:core-4.0-noarch:graphics-4.0-amd64:graphics-4.0-noarch:printing-4.0-amd64:printing-4.0-noarch<br>Distributor ID:    CentOS<br>Description:    CentOS release 6.5 (Final)<br>Release:    6.5<br>Codename:    Final</p>
-<h3 id="2、查看apache版本"><a href="#2、查看apache版本" class="headerlink" title="2、查看apache版本"></a>2、查看apache版本</h3><pre><code>httpd -v
-rpm -qa |grep httpd
-</code></pre>
-<p>[root@gzc /]# httpd -v<br>Server version: Apache/2.2.15 (Unix)</p>
-<p>[root@gzc /]# rpm -qa |grep httpd<br>httpd-2.2.15-31.el6.centos.x86_64<br>httpd-tools-2.2.15-31.el6.centos.x86_64</p>
-<h3 id="3、查看php版本"><a href="#3、查看php版本" class="headerlink" title="3、查看php版本"></a>3、查看php版本</h3><pre><code>php -v
-rpm -qa | grep php
-</code></pre>
-<p>[root@gzc /]# php -v<br>PHP 5.3.3 (cli) (built: Aug  6 2014 05:54:27)<br>Copyright (c) 1997-2010 The PHP Group<br>Zend Engine v2.3.0, Copyright (c) 1998-2010 Zend Technologies</p>
-<p>[root@gzc /]# rpm -qa | grep php<br>php-5.3.3-27.el6_5.1.x86_64<br>php-common-5.3.3-27.el6_5.1.x86_64<br>php-cli-5.3.3-27.el6_5.1.x86_64<br>php-devel-5.3.3-27.el6_5.1.x86_64<br>php-gd-5.3.3-27.el6_5.1.x86_64<br>php-pdo-5.3.3-27.el6_5.1.x86_64<br>php-mysql-5.3.3-27.el6_5.1.x86_64</p>
-<h3 id="4、查看mysql版本"><a href="#4、查看mysql版本" class="headerlink" title="4、查看mysql版本"></a>4、查看mysql版本</h3><pre><code>mysql -V
-rpm -qa |grep mysql
-</code></pre>
-<p>[root@gzc /]# mysql -V<br>mysql  Ver 14.14 Distrib 5.1.73, for redhat-linux-gnu (x86_64) using readline 5.1</p>
-<p>[root@gzc /]# rpm -qa |grep mysql<br>mysql-libs-5.1.73-3.el6_5.x86_64<br>mysql-server-5.1.73-3.el6_5.x86_64<br>mysql-5.1.73-3.el6_5.x86_64<br>php-mysql-5.3.3-27.el6_5.1.x86_64</p>
-<p>=========================================================================</p>
 
             </div>
             <hr/>
@@ -1121,32 +1100,33 @@ rpm -qa |grep mysql
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/28/tengine/">
+                <a href="/2024/01/01/sun-zi-bing-fa-san-shi-liu-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Tengine安装配置">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="孙子兵法 三十六计">
                         
-                        <span class="card-title">Tengine安装配置</span>
+                        <span class="card-title">孙子兵法 三十六计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Tengine安装配置说明安装环境：CentOS Linux 6（最新版CentOS6.10），CentOS Linux 7 8系列未测试
-版本：适用tengine2.2.*系列（最新版tengine2.2.3），tengine2.3.*系
+                            孙子兵法&amp;&amp;三十六计（原文）孙子兵法始計篇    第一    孫子曰：兵者，國之大事，死生之地，存亡之道，不可不察也。
+    
+    故經之以五事，校之以計而索其情：一曰道，二曰天，三曰地，四曰將，五曰法。道者，令民與上
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-28
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-01-01
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Tengine/" class="post-category">
-                                    Tengine
+                            <a href="/categories/%E7%B2%BE%E7%A5%9E%E4%B9%8B%E6%B5%B7/" class="post-category">
+                                    精神之海
                                 </a>
                             
                             
@@ -1156,12 +1136,12 @@ rpm -qa |grep mysql
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/%E6%91%98%E5%BD%95/">
+                        <span class="chip bg-color">摘录</span>
                     </a>
                     
-                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                        <span class="chip bg-color">服务器</span>
+                    <a href="/tags/%E8%AF%97%E8%AF%8D/">
+                        <span class="chip bg-color">诗词</span>
                     </a>
                     
                 </div>
@@ -1172,10 +1152,10 @@ rpm -qa |grep mysql
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/03/28/lamp/">
+                <a href="/2024/01/01/lamp/">
                     <div class="card-image">
                         
                         
@@ -1193,7 +1173,7 @@ rpm -qa |grep mysql
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-01
                             </span>
                         <span class="publish-author">
                             
@@ -1207,7 +1187,6 @@ rpm -qa |grep mysql
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
